@@ -11,3 +11,8 @@ pytz==2025.2
 setuptools==78.1.1
 tzdata==2025.2
 wheel==0.45.1
+scikit-learn==1.6.1
+xgboost==3.0.2
+seaborn==0.13.2
+plotly==6.1.1
+statsmodels==0.14.4
