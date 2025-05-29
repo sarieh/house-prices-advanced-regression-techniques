@@ -124,22 +124,21 @@ def categorical_vs_target_plot(cat_df: pd.DataFrame, target: pd.Series):
     plt.show()
 
 
-def plot_target_distribution(target: pd.Series, title: str, xlablel: str, ylabel: str):
+def plot_target_distribution(data, title: str, xlabel: str, ylabel: str, ax=None):
     """
-    Plots the distribution of the target variable using a histogram and KDE.
+    Plots the distribution of a target variable.
 
     Parameters:
-        df (pd.DataFrame): A dataframe containing the target.
+        data (array-like): Target values.
         title (str): Title of the plot.
-        xlablel (str): Label for the x-axis.
+        xlabel (str): Label for the x-axis.
         ylabel (str): Label for the y-axis.
-
-    Returns:
-        None
+        ax (matplotlib.axes.Axes, optional): Axes object to draw the plot on. If None, a new figure is created.
     """
-    sns.histplot(target, kde=True)
+    if ax is None:
+        fig, ax = plt.subplots()
 
-    plt.title(title)
-    plt.xlabel(xlablel)
-    plt.ylabel(ylabel)
-    plt.show()
+    sns.histplot(data, kde=True, ax=ax)
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
