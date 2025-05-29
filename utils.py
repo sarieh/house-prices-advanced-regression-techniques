@@ -119,7 +119,7 @@ def drop_feature_if_nan_exceeds_threshold(df: pd.DataFrame, feature: str, thresh
     return df
 
 
-def fill_nan_with_value(df: pd.DataFrame, feature: str, fill_value: Any, deep: Optional[bool] = False) -> pd.DataFrame:
+def feature_fill_nan_with_value(df: pd.DataFrame, feature: str, fill_value: Any, deep: Optional[bool] = False) -> pd.DataFrame:
     """
     Fills NaN values in the specified feature (column) with a given fill_value.
 
@@ -135,6 +135,22 @@ def fill_nan_with_value(df: pd.DataFrame, feature: str, fill_value: Any, deep: O
     df = df.copy(deep=deep)
     df[feature] = df[feature].fillna(fill_value)
     return df
+
+
+def fill_nan(df: pd.DataFrame, fill_value: Any, deep: Optional[bool] = False) -> pd.DataFrame:
+    """
+    Fills all NaN values in the DataFrame with a specified fill value.
+
+    Parameters:
+        df (pd.DataFrame): Input DataFrame.
+        fill_value (Any): Value to replace NaNs with (e.g., string, number).
+        deep (Optional[bool], optional): Whether to perform a deep copy of the DataFrame before modification. Defaults to False.
+
+    Returns:
+        pd.DataFrame: DataFrame with all NaN values replaced by fill_value.
+    """
+    df = df.copy(deep=deep)
+    return df.fillna(fill_value)
 
 
 def calculate_vif(X: pd.DataFrame) -> pd.DataFrame:
