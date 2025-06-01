@@ -1,5 +1,5 @@
 from sklearn.base import BaseEstimator, TransformerMixin
-from utils import get_categorical_columns
+from src.utils import get_categorical_columns
 from sklearn.feature_selection import mutual_info_regression
 from sklearn.preprocessing import  OrdinalEncoder
 import numpy as np

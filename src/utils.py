@@ -4,6 +4,24 @@ from pathlib import Path
 from typing import Optional, Any
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from statsmodels.tools.tools import add_constant
+import random
+import torch
+
+def set_seed(seed, deterministic=False):
+    """
+    Sets the random seed for reproducibility across various libraries.
+    Parameters:
+        seed (int): The seed value to set for random number generation.
+        deterministic (bool): If True, sets additional configurations for deterministic behavior in PyTorch
+    """
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+
+    if deterministic:
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
 
 
 def read_data_from_csv(root_dir: Path, filename: str) -> pd.DataFrame:

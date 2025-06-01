@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder, MinMaxScaler
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -8,10 +8,9 @@ from typing import Optional, Any
 
 #TODO: Find a method to detect & deal with outliers
 
-
 def normalize_data(df, columns=None):
     """
-    Normalize specified columns using StandardScaler.
+    Normalize specified columns using MinMaxScalerss.
 
     Parameters:
         df (pd.DataFrame): Input DataFrame.
@@ -21,7 +20,7 @@ def normalize_data(df, columns=None):
         pd.DataFrame: DataFrame with normalized columns.
         scaler: Fitted StandardScaler instance (can be reused on test data).
     """
-    scaler = StandardScaler()
+    scaler = MinMaxScaler()
     if isinstance(df, pd.DataFrame) and columns in df.columns:
         df[columns] = scaler.fit_transform(df[columns])
     df = scaler.fit_transform(df)

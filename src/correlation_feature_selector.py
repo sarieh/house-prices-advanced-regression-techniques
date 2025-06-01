@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from typing import Literal
 
-
 class CorrelationFeatureSelector(BaseEstimator, TransformerMixin):
     """
     Feature selector that selects features based on correlation with the target.
